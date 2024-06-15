@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AddIcon from '../assets/add-circle-svgrepo-com.svg?react';
+import BookmarkList from '../components/BookmarkList';
 import Header from '../components/Header';
 
 const BookmarkListPage = () => {
@@ -25,7 +26,8 @@ const BookmarkListPage = () => {
           <AddIcon className="h-12 w-12 fill-gray-800 dark:fill-gray-100" />
         </button>
       </div>
-      {/* table */}
+
+      <BookmarkList />
     </>
   );
 };
