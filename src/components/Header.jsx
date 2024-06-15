@@ -6,15 +6,19 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-between py-4">
-        <div className="flex items-center" onClick={() => navigate('/')}>
-          <img className="w-8" src={nutbooks_logo} alt="logo" />
-          <span className="font-serif text-2xl">NutBooks</span>
+      <div className="navbar">
+        <div className="navbar-start">
+          <div className="flex items-center" onClick={() => navigate('/')}>
+            <img className="w-8" src={nutbooks_logo} alt="logo" />
+            <span className="font-serif text-2xl">NutBooks</span>
+          </div>
         </div>
-        <div className="">
-          <div>저장 목록</div>
+        <div className="navbar-center">
+          <div className="flex">
+            <div onClick={() => navigate('/list')}>저장 목록</div>
+          </div>
         </div>
-        <div className="">
+        <div className="navbar-end">
           <div>로그인</div>
         </div>
       </div>
