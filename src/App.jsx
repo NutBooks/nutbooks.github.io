@@ -1,10 +1,15 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import BookmarkListPage from './pages/BookmarkListPage';
 import MainPage from './pages/MainPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainPage />,
+  },
+  {
+    path: '/list',
+    element: <BookmarkListPage />,
   },
 ]);
 
