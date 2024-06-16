@@ -9,13 +9,21 @@ const AddBookmark = () => {
   const navigate = useNavigate();
 
   const addUrlHandler = () => {
-    // TODO: validate url using regex
+    // https://www.freecodecamp.org/news/how-to-write-a-regular-expression-for-a-url/
+    const pattern =
+      /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/g;
+
+    if (!pattern.test(url)) {
+      alert('적절한 URL 주소를 입력하세요.');
+      return;
+    }
 
     axiosWithCredentialInstance
       .post('/article', {
         url: url,
       })
       .then(() => {
+        alert('이 사이트 요약 작업을 대기열에 추가했습니다.');
         setUrl('');
         navigate(0);
       })
@@ -26,13 +34,13 @@ const AddBookmark = () => {
   };
 
   return (
-    <div className="flex w-full items-center justify-center gap-4 p-8">
+    <div className="mb-8 mt-6 flex w-full items-center justify-center gap-4 p-8">
       <input
         type="text"
-        placeholder="Add URL here"
+        placeholder="요약할 사이트 URL을 입력하세요."
         value={url}
         onChange={e => setUrl(e.target.value)}
-        className="input input-bordered w-2/3 md:w-1/2"
+        className="input input-bordered w-full md:w-2/3"
       />
       <button onClick={addUrlHandler}>
         <AddIcon className="h-12 w-12 fill-gray-800 dark:fill-gray-100" />
