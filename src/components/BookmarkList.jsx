@@ -38,38 +38,59 @@ const BookmarkList = () => {
   return (
     <div className="rounded-lg bg-white p-4">
       <h2 className="text-lg">저장된 북마크 목록</h2>
-      <div className="overflow-x-auto">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Keywords</th>
-              <th>Tags</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map(article => (
-              <tr key={article.id} className="hover">
-                <th>{article.id}</th>
-                <td>{article.title}</td>
-                <td>{article.author}</td>
-                <td>{article.keywords}</td>
-                <td className="flex gap-2">
+      <div className="flex flex-col gap-4">
+        {data.map(article => (
+          <div key={article.id} className="bg-base-200 flex flex-wrap gap-4 rounded-lg p-4 shadow-xl">
+            <div className="flex w-full flex-col items-center sm:flex-row">
+              {article.image && (
+                <figure className="mb-4 sm:mb-0 sm:mr-4 sm:shrink-0 sm:basis-[300px]">
+                  <img className="rounded-lg" src={article.image} alt="og:image" />
+                </figure>
+              )}
+              <div className="flex flex-col gap-2 text-sm">
+                <h2 className="text-bold text-xl">{article.title}</h2>
+                <p>Author: {article.author}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span>Keywords: </span>
+                  {article.keywords &&
+                    article.keywords
+                      .filter(keyword => keyword != '')
+                      .map(keyword => (
+                        <span
+                          key={keyword.index}
+                          className="badge badge-sm bg-lime-300 text-xs dark:bg-lime-700 dark:text-white"
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span>Tags: </span>
                   {article.tags &&
                     article.tags.map(tag => (
-                      <span key={tag.index} className="rounded bg-lime-600 p-1 text-white">
+                      <span
+                        key={tag.index}
+                        className="badge badge-sm bg-lime-300 text-xs dark:bg-lime-700 dark:text-white"
+                      >
                         {tag}
                       </span>
                     ))}
-                </td>
-                <td>{article.text ? 'Done' : 'Queued'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-bold text-xl">Summary</span>
+                {article.text ? (
+                  <span className="badge badge-sm badge-success">Done</span>
+                ) : (
+                  <span className="badge badge-sm badge-warning">Queued</span>
+                )}
+              </div>
+              <p className="text-sm">{article.text}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
