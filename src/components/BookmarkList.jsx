@@ -49,23 +49,23 @@ const BookmarkList = () => {
               )}
               <div className="flex flex-col gap-2 text-sm">
                 <h2 className="text-bold text-xl">{article.title}</h2>
-                <p>Author: {article.author}</p>
+                <p>작성자: {article.author}</p>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span>Keywords: </span>
+                  <span>키워드: </span>
                   {article.keywords &&
                     article.keywords
                       .filter(keyword => keyword != '')
                       .map(keyword => (
                         <span
                           key={keyword.index}
-                          className="badge badge-sm bg-lime-300 text-xs dark:bg-lime-700 dark:text-white"
+                          className="badge badge-sm bg-sky-200 text-xs dark:bg-lime-700 dark:text-white"
                         >
                           {keyword}
                         </span>
                       ))}
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span>Tags: </span>
+                  <span>태그: </span>
                   {article.tags &&
                     article.tags.map(tag => (
                       <span
@@ -76,6 +76,9 @@ const BookmarkList = () => {
                       </span>
                     ))}
                 </div>
+                <p>
+                  링크: <a href={article.url}>{article.url}</a>
+                </p>
               </div>
             </div>
             <div className="bg-base-200 collapse-arrow collapse">
