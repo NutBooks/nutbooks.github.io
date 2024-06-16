@@ -38,7 +38,7 @@ const BookmarkList = () => {
   return (
     <div className="rounded-lg bg-white p-4">
       <h2 className="text-lg">저장된 북마크 목록</h2>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-y-6">
         {data.map(article => (
           <div key={article.id} className="bg-base-200 flex flex-wrap gap-4 rounded-lg p-4 shadow-xl">
             <div className="flex w-full flex-col items-center sm:flex-row">
@@ -78,16 +78,19 @@ const BookmarkList = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-bold text-xl">Summary</span>
+            <div className="bg-base-200 collapse-arrow collapse">
+              <input type="checkbox" />
+              <div className="collapse-title">
+                <span className="text-bold text-xl">Summary </span>
                 {article.text ? (
                   <span className="badge badge-sm badge-success">Done</span>
                 ) : (
                   <span className="badge badge-sm badge-warning">Queued</span>
                 )}
               </div>
-              <p className="text-sm">{article.text}</p>
+              <div className="collapse-content">
+                <p className="text-sm">{article.text}</p>
+              </div>
             </div>
           </div>
         ))}
