@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import BookmarkListPage from './pages/BookmarkListPage';
+import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 
 const router = createBrowserRouter([
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: '/list',
     element: <BookmarkListPage />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
 ]);
 

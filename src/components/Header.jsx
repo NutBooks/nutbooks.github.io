@@ -21,7 +21,7 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-end">
-          <div>로그인</div>
+          <div onClick={() => navigate('/login')}>로그인</div>
         </div>
       </div>
     </>
