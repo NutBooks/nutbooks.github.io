@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import BookmarkListPage from './pages/BookmarkListPage';
 import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
+import PrivateRoute from './pages/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +11,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/list',
-    element: <BookmarkListPage />,
+    element: (
+      <PrivateRoute>
+        <BookmarkListPage />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/login',
