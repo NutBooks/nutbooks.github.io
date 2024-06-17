@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 
 const BookmarkCard = ({ article }) => {
+  const statusBadgeColour =
+    article.status == 'QUEUED' ? 'badge-warning' : article.status == 'DONE' ? 'badge-success' : 'badge-error';
+
   return (
-    <div key={article.id} className="bg-base-200 flex flex-wrap gap-4 rounded-lg p-4 shadow-xl">
+    <div key={article.id} className="flex flex-wrap gap-4 rounded-lg bg-base-200 p-4 shadow-xl">
       <div className="flex w-full flex-col items-center sm:flex-row">
         {article.image && (
           <figure className="mb-4 sm:mb-0 sm:mr-4 sm:shrink-0 sm:basis-[300px]">
@@ -40,15 +43,11 @@ const BookmarkCard = ({ article }) => {
           </p>
         </div>
       </div>
-      <div className="bg-base-200 collapse-arrow collapse">
+      <div className="collapse collapse-arrow bg-base-200">
         <input type="checkbox" />
         <div className="collapse-title">
           <span className="text-bold text-xl">Summary </span>
-          {article.text ? (
-            <span className="badge badge-sm badge-success">Done</span>
-          ) : (
-            <span className="badge badge-sm badge-warning">Queued</span>
-          )}
+          <span className={`badge ${statusBadgeColour} badge-sm`}>{article.status}</span>
         </div>
         <div className="collapse-content">
           <p className="text-sm">{article.text}</p>
@@ -68,6 +67,7 @@ BookmarkCard.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
     url: PropTypes.string,
     text: PropTypes.string,
+    status: PropTypes.string,
   }).isRequired,
 };
 
