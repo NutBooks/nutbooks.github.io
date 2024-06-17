@@ -42,7 +42,7 @@ const LoginForm = () => {
       .then(response => {
         localStorage.setItem('user', JSON.stringify(response.data.data));
         localStorage.setItem('Authorization', response.headers.authorization.replace('Bearer ', ''));
-        navigate('/');
+        navigate('/list');
       })
       .catch(() => {
         alert('로그인 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
