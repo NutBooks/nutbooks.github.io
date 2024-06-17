@@ -1,9 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import LogoLight from '../assets/nutbooks_logo.svg?react';
 import LogoDark from '../assets/nutbooks_logo_dark.svg?react';
+import UserIcon from '../assets/user_alt_1_svgrepo_com.svg?react';
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const isLogin = localStorage.getItem('Authorization') != null;
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+
+  const logoutHandler = () => {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      localStorage.removeItem('Authorization');
+      localStorage.removeItem('user');
+      navigate('/');
+      alert('로그아웃 하였습니다.');
+    }
+  };
 
   return (
     <>
@@ -21,7 +34,32 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-end">
-          <div onClick={() => navigate('/login')}>로그인</div>
+          {!isLogin ? (
+            <div onClick={() => navigate('/login')}>로그인</div>
+          ) : (
+            <div className="flex flex-col justify-center gap-2 text-center text-sm sm:flex-row">
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
+                  <div className="w-8 rounded-full">
+                    <UserIcon className="h-8 w-8" />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu dropdown-content menu-sm z-[1] mt-3 w-40 rounded-box bg-base-100 p-2 shadow"
+                >
+                  <li>
+                    <a className="mx-auto">마이페이지</a>
+                  </li>
+                  <li>
+                    <span onClick={logoutHandler} className="mx-auto">
+                      로그아웃
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
