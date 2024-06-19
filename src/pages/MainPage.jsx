@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import mainGif from '../assets/main.gif';
-import Footer from '../components/\bFooter.jsx';
+import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
 
 const MainPage = () => {
