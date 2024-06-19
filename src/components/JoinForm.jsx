@@ -6,15 +6,16 @@ const LoginForm = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [openaiKey, setOpenaiKey] = useState('');
+  const [checkIdDuplicated, setCheckIdDuplicated] = useState(false);
 
   const navigate = useNavigate();
 
-  const joinHandler = () => {
-    const pattern = {
-      userId: /[a-z0-9]{4,20}/g,
-      password: /[A-Za-z0-9]{8,20}/g,
-    };
+  const pattern = {
+    userId: /[a-z0-9]{4,20}/g,
+    password: /[A-Za-z0-9]{8,20}/g,
+  };
 
+  const checkIdDuplicatedHandler = () => {
     if (!userId) {
       alert('아이디를 입력해주세요.');
       return;
@@ -23,6 +24,40 @@ const LoginForm = () => {
         alert('아이디 형식이 잘못되었습니다.');
         return;
       }
+    }
+
+    axiosCommonInstance
+      .get(`/auth/account/${userId}`)
+      .then(response => {
+        console.log(response.data);
+        if (response.data.data) {
+          alert('사용 가능한 아이디입니다.');
+          setCheckIdDuplicated(true);
+        } else {
+          alert('이미 사용 중인 아이디입니다.');
+          setCheckIdDuplicated(false);
+        }
+      })
+      .catch(() => {
+        alert('아이디 중복 확인 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+        setCheckIdDuplicated(false);
+      });
+  };
+
+  const joinHandler = () => {
+    if (!userId) {
+      alert('아이디를 입력해주세요.');
+      return;
+    } else {
+      if (!pattern.userId.test(userId)) {
+        alert('아이디 형식이 잘못되었습니다.');
+        return;
+      }
+    }
+
+    if (!checkIdDuplicated) {
+      alert('아이디 중복 확인이 필요합니다.');
+      return;
     }
 
     if (!password) {
@@ -65,13 +100,22 @@ const LoginForm = () => {
                 <label className="label">
                   <span className="label-text">아이디: 영문 소문자, 숫자로 4-20자 (필수)</span>
                 </label>
-                <input
-                  type="text"
-                  placeholder="아이디"
-                  className="input input-bordered"
-                  onChange={e => setUserId(e.target.value)}
-                  required
-                />
+                <label className="input input-bordered flex items-center gap-2">
+                  <input
+                    type="text"
+                    className="w-full grow"
+                    placeholder="아이디"
+                    onChange={e => setUserId(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className={`btn ${checkIdDuplicated ? 'btn-success' : 'btn-warning'} btn-xs text-xs`}
+                    onClick={checkIdDuplicatedHandler}
+                  >
+                    중복 확인
+                  </button>
+                </label>
               </div>
               <div className="form-control">
                 <label className="label">
