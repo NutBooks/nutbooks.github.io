@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import mainGif from '../assets/main.gif';
+import Footer from '../components/\bFooter.jsx';
 import Header from '../components/Header.jsx';
 
 const MainPage = () => {
@@ -7,6 +8,7 @@ const MainPage = () => {
   return (
     <>
       <Header />
+
       <div className="hero min-h-[calc(100vh-72px)]">
         <div className="hero-content flex-col gap-8 lg:flex-row">
           <img src={mainGif} className="max-w-full rounded-lg shadow-2xl sm:max-w-sm" />
@@ -23,6 +25,8 @@ const MainPage = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };
