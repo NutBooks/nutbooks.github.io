@@ -19,9 +19,11 @@ const MainPage = () => {
               <br />
               핵심만 요약해서 알려드릴게요!
             </p>
-            <button type="button" className="btn btn-primary" onClick={() => navigate('/list')}>
-              시작하기
-            </button>
+            <div className="text-center sm:ml-8 sm:text-left">
+              <button type="button" className="btn btn-primary px-12" onClick={() => navigate('/list')}>
+                시작하기
+              </button>
+            </div>
           </div>
         </div>
       </div>
