@@ -53,7 +53,7 @@ const LoginForm = () => {
     <>
       <div className="min-h-screen">
         <div className="mx-auto my-12 w-5/6 flex-col sm:w-[540px] lg:flex-row-reverse">
-          <div className="card bg-base-100 shadow-2xl">
+          <div className="card bg-base-100 shadow-2xl dark:bg-base-300">
             <form className="card-body">
               <div className="form-control">
                 <label className="label"></label>

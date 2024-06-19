@@ -29,7 +29,7 @@ const BookmarkList = () => {
 
   if (loading) {
     return (
-      <div className="rounded-lg bg-white p-4">
+      <div className="rounded-lg bg-base-300 p-4">
         <h2 className="text-bold mb-6 mt-2 text-center text-2xl">저장된 북마크 목록</h2>
         <div>Loading ...</div>
       </div>
@@ -37,7 +37,7 @@ const BookmarkList = () => {
   }
 
   return (
-    <div className="rounded-lg bg-white p-4">
+    <div className="rounded-lg bg-base-300 p-4">
       <h2 className="text-bold mb-6 mt-2 text-center text-2xl">저장된 북마크 목록</h2>
       <div className="flex flex-col gap-y-6">
         {data.map(article => (

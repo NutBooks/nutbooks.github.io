@@ -25,7 +25,7 @@ const Header = () => {
           <div className="flex items-center" onClick={() => navigate('/')}>
             <LogoLight className="h-8 w-9 dark:hidden" />
             <LogoDark className="hidden h-8 w-9 dark:block" />
-            <span className="font-serif text-2xl dark:text-white">NutBooks</span>
+            <span className="font-serif text-2xl">NutBooks</span>
           </div>
         </div>
         <div className="navbar-center">
@@ -41,7 +41,7 @@ const Header = () => {
               <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                   <div className="w-8 rounded-full">
-                    <UserIcon className="h-8 w-8" />
+                    <UserIcon className="h-8 w-8 stroke-base-content dark:stroke-base-content" />
                   </div>
                 </div>
                 <ul

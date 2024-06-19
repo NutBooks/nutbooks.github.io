@@ -5,7 +5,7 @@ const BookmarkCard = ({ article }) => {
     article.status == 'QUEUED' ? 'badge-warning' : article.status == 'DONE' ? 'badge-success' : 'badge-error';
 
   return (
-    <div key={article.id} className="flex flex-wrap gap-4 rounded-lg bg-base-200 p-4 shadow-xl">
+    <div key={article.id} className="flex flex-wrap gap-4 rounded-lg bg-base-100 p-4 shadow-xl">
       <div className="flex w-full flex-col items-center sm:flex-row">
         {article.image && (
           <figure className="mb-4 sm:mb-0 sm:mr-4 sm:shrink-0 sm:basis-[300px]">
@@ -43,7 +43,7 @@ const BookmarkCard = ({ article }) => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-base-200">
+      <div className="collapse collapse-arrow bg-base-100">
         <input type="checkbox" />
         <div className="collapse-title">
           <span className="text-bold text-xl">Summary </span>

@@ -43,7 +43,7 @@ const AddBookmark = () => {
         className="input input-bordered w-full md:w-2/3"
       />
       <button onClick={addUrlHandler}>
-        <AddIcon className="h-12 w-12 fill-gray-800 dark:fill-gray-100" />
+        <AddIcon className="h-12 w-12 fill-base-content" />
       </button>
     </div>
   );
