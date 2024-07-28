@@ -2,8 +2,9 @@
 <html>
   <head>
     <script>
-      sessionStorage.redirect = location.href;
+      var currentLocation = window.location.pathname;
+      window.location.replace('/#' + currentLocation);
     </script>
-    <meta http-equiv="refresh" content="0;URL='/'">
+    <!-- <meta http-equiv="refresh" content="0;URL='/'"> -->
   </head>
 </html>
