@@ -29,7 +29,6 @@ const LoginForm = () => {
     axiosCommonInstance
       .get(`/auth/account/${userId}`)
       .then(response => {
-        console.log(response.data);
         if (response.data.data) {
           alert('사용 가능한 아이디입니다.');
           setCheckIdDuplicated(true);
