@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { axiosCommonInstance } from '../apis/axiosInstance';
 
 const LoginForm = () => {
@@ -86,9 +86,9 @@ const LoginForm = () => {
               </div>
               <label className="mt-4">
                 <span className="mr-2 text-xs">아직 회원이 아니신가요?</span>
-                <a href="/join" className="link-hover link label-text-alt text-sm">
+                <Link to="/join" className="link-hover link label-text-alt text-sm">
                   회원 가입
-                </a>
+                </Link>
               </label>
             </form>
           </div>
