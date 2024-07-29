@@ -10,8 +10,8 @@ const LoginForm = () => {
 
   const loginHandler = () => {
     const pattern = {
-      userId: /[a-z0-9]{4,20}/g,
-      password: /[A-Za-z0-9]{8,20}/g,
+      userId: /^[a-z0-9]{4,20}$/,
+      password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/,
     };
 
     if (!userId) {
@@ -28,7 +28,7 @@ const LoginForm = () => {
       alert('비밀번호를 입력해주세요.');
       return;
     } else {
-      if (!pattern.password.test(userId)) {
+      if (!pattern.password.test(password)) {
         alert('비밀번호 형식이 잘못되었습니다.');
         return;
       }
