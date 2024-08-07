@@ -1,10 +1,21 @@
+import { HttpStatusCode } from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { axiosWithCredentialInstance } from '../apis/axiosInstance';
 import BookmarkCard from './BookmarkCard';
 
 const BookmarkList = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+
+  const navigate = useNavigate();
+
+  const invalidTokenHandler = () => {
+    localStorage.removeItem('Authorization');
+    localStorage.removeItem('user');
+    navigate('/login');
+    alert('재로그인이 필요합니다.');
+  };
 
   useEffect(() => {
     const fetchData = () => {
@@ -19,7 +30,10 @@ const BookmarkList = () => {
           setData(response.data.data.content);
           setLoading(false);
         })
-        .catch(() => {
+        .catch(err => {
+          if (err.response.status === HttpStatusCode.Unauthorized) {
+            invalidTokenHandler();
+          }
           setLoading(false);
         });
     };
