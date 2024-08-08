@@ -12,8 +12,8 @@ const BookmarkCard = ({ article }) => {
             <img className="rounded-lg" src={article.image} alt="og:image" />
           </figure>
         )}
-        <div className="flex flex-col gap-2 text-sm">
-          <h2 className="text-bold text-xl">{article.title}</h2>
+        <div className="flex w-full flex-col gap-2 text-sm">
+          <h2 className="text-bold text-2xl">{article.title}</h2>
           <p>작성자: {article.author}</p>
           <div className="flex flex-wrap items-center gap-2">
             <span>키워드: </span>
@@ -38,9 +38,12 @@ const BookmarkCard = ({ article }) => {
                 </span>
               ))}
           </div>
-          <p>
-            링크: <a href={article.url}>{article.url}</a>
-          </p>
+          <div className="flex gap-2">
+            <span className="shrink-0">링크:</span>
+            <a href={article.url} className="break-all">
+              {article.url}
+            </a>
+          </div>
         </div>
       </div>
       <div className="collapse collapse-arrow bg-base-100">
