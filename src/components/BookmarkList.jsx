@@ -24,6 +24,7 @@ const BookmarkList = () => {
           params: {
             page: 0,
             size: 10,
+            sort: 'id,DESC',
           },
         })
         .then(response => {
