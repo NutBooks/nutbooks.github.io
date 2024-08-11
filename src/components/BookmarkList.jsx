@@ -18,13 +18,12 @@ const BookmarkList = () => {
     alert('재로그인이 필요합니다.');
   };
 
-  useEffect(() => {
-    const fetchData = () => {
+  const fetchData = (page, size) => {
       axiosWithCredentialInstance
         .get('/article', {
           params: {
-            page: 0,
-            size: 10,
+          page: page,
+          size: size,
             sort: 'id,DESC',
           },
         })
@@ -47,7 +46,8 @@ const BookmarkList = () => {
         });
     };
 
-    fetchData();
+  useEffect(() => {
+    fetchData(0, 3);
   }, []);
 
   if (loading) {
