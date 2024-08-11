@@ -7,6 +7,7 @@ import BookmarkCard from './BookmarkCard';
 const BookmarkList = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [pageData, setPageData] = useState([]);
 
   const navigate = useNavigate();
 
@@ -29,6 +30,13 @@ const BookmarkList = () => {
         })
         .then(response => {
           setData(response.data.data.content);
+          setPageData({
+            totalPages: response.data.data.totalPages,
+            pageNumber: response.data.data.pageable.pageNumber,
+            totalElements: response.data.data.totalElements,
+            offset: response.data.data.pageable.offset,
+            pageSize: response.data.data.pageable.pageSize,
+          });
           setLoading(false);
         })
         .catch(err => {
