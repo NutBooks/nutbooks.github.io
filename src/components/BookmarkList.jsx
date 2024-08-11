@@ -8,7 +8,7 @@ import Pagination from './Pagination';
 const BookmarkList = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [pageData, setPageData] = useState([]);
+  const [pageData, setPageData] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize] = useState(10);
 
