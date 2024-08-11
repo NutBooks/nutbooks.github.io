@@ -20,11 +20,8 @@ const BookmarkCard = ({ article }) => {
             {article.keywords &&
               article.keywords
                 .filter(keyword => keyword != '')
-                .map(keyword => (
-                  <span
-                    key={keyword.index}
-                    className="badge badge-sm bg-sky-200 text-xs dark:bg-lime-700 dark:text-white"
-                  >
+                .map((keyword, index) => (
+                  <span key={index} className="badge badge-sm bg-sky-200 text-xs dark:bg-lime-700 dark:text-white">
                     {keyword}
                   </span>
                 ))}
@@ -32,8 +29,8 @@ const BookmarkCard = ({ article }) => {
           <div className="flex flex-wrap items-center gap-2">
             <span>태그: </span>
             {article.tags &&
-              article.tags.map(tag => (
-                <span key={tag.index} className="badge badge-sm bg-lime-300 text-xs dark:bg-lime-700 dark:text-white">
+              article.tags.map((tag, index) => (
+                <span key={index} className="badge badge-sm bg-lime-300 text-xs dark:bg-lime-700 dark:text-white">
                   {tag}
                 </span>
               ))}
