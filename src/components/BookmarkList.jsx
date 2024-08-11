@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosWithCredentialInstance } from '../apis/axiosInstance';
 import BookmarkCard from './BookmarkCard';
+import Pagination from './Pagination';
 
 const BookmarkList = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [pageData, setPageData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize] = useState(10);
 
   const navigate = useNavigate();
 
@@ -19,36 +22,40 @@ const BookmarkList = () => {
   };
 
   const fetchData = (page, size) => {
-      axiosWithCredentialInstance
-        .get('/article', {
-          params: {
+    axiosWithCredentialInstance
+      .get('/article', {
+        params: {
           page: page,
           size: size,
-            sort: 'id,DESC',
-          },
-        })
-        .then(response => {
-          setData(response.data.data.content);
-          setPageData({
-            totalPages: response.data.data.totalPages,
-            pageNumber: response.data.data.pageable.pageNumber,
-            totalElements: response.data.data.totalElements,
-            offset: response.data.data.pageable.offset,
-            pageSize: response.data.data.pageable.pageSize,
-          });
-          setLoading(false);
-        })
-        .catch(err => {
-          if (err.response.status === HttpStatusCode.Unauthorized) {
-            invalidTokenHandler();
-          }
-          setLoading(false);
+          sort: 'id,DESC',
+        },
+      })
+      .then(response => {
+        setData(response.data.data.content);
+        setPageData({
+          totalPages: response.data.data.totalPages,
+          pageNumber: response.data.data.pageable.pageNumber + 1,
+          totalElements: response.data.data.totalElements,
+          offset: response.data.data.pageable.offset,
+          pageSize: response.data.data.pageable.pageSize,
         });
-    };
+        setLoading(false);
+      })
+      .catch(err => {
+        if (err.response.status === HttpStatusCode.Unauthorized) {
+          invalidTokenHandler();
+        }
+        setLoading(false);
+      });
+  };
+
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
-    fetchData(0, 3);
-  }, []);
+    fetchData(currentPage, pageSize);
+  }, [currentPage]);
 
   if (loading) {
     return (
@@ -67,6 +74,7 @@ const BookmarkList = () => {
           <BookmarkCard key={article.id} article={article} />
         ))}
       </div>
+      <Pagination pageData={pageData} onPageChange={handlePageChange} />
     </div>
   );
 };
