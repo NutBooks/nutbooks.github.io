@@ -40,6 +40,7 @@ const AddBookmark = () => {
         placeholder="요약할 사이트 URL을 입력하세요."
         value={url}
         onChange={e => setUrl(e.target.value)}
+        onKeyUp={e => (e.key === 'Enter' ? addUrlHandler() : '')}
         className="input input-bordered w-full md:w-2/3"
       />
       <button onClick={addUrlHandler}>

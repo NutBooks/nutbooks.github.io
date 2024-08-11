@@ -76,6 +76,7 @@ const LoginForm = () => {
                   placeholder="비밀번호"
                   className="input input-bordered"
                   onChange={e => setPassword(e.target.value)}
+                  onKeyUp={e => (e.key === 'Enter' ? loginHandler() : '')}
                   required
                 />
               </div>
