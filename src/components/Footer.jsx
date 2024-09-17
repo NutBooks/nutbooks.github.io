@@ -4,7 +4,7 @@ import LogoDark from '../assets/nutbooks_logo_dark.svg?react';
 
 const Footer = () => {
   return (
-    <footer className="mt-8 flex flex-col items-center justify-around p-4 sm:flex-row dark:text-neutral-content">
+    <footer className="mx-auto mt-8 flex max-w-5xl flex-col items-center justify-around p-4 sm:flex-row dark:text-neutral-content">
       <div className="m-1 flex items-center gap-2">
         <LogoLight className="h-6 w-7 dark:hidden" />
         <LogoDark className="hidden h-6 w-7 dark:block" />

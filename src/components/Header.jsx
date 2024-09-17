@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="navbar">
+      <div className="navbar mx-auto max-w-5xl">
         <div className="navbar-start">
           <div className="flex items-center" onClick={() => navigate('/')}>
             <LogoLight className="h-8 w-9 dark:hidden" />
