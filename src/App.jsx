@@ -3,6 +3,7 @@ import BookmarkListPage from './pages/BookmarkListPage';
 import JoinPage from './pages/JoinPage';
 import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
+import MyPage from './pages/MyPage';
 import PrivateRoute from './pages/PrivateRoute';
 
 const router = createHashRouter([
@@ -25,6 +26,14 @@ const router = createHashRouter([
   {
     path: '/join',
     element: <JoinPage />,
+  },
+  {
+    path: '/mypage',
+    element: (
+      <PrivateRoute>
+        <MyPage />
+      </PrivateRoute>
+    ),
   },
 ]);
 

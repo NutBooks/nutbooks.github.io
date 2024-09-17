@@ -49,7 +49,9 @@ const Header = () => {
                   className="menu dropdown-content menu-sm z-[1] mt-3 w-40 rounded-box bg-base-100 p-2 shadow"
                 >
                   <li>
-                    <a className="mx-auto">마이페이지</a>
+                    <span onClick={() => navigate('/mypage')} className="mx-auto">
+                      마이페이지
+                    </span>
                   </li>
                   <li>
                     <span onClick={logoutHandler} className="mx-auto">
